@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 )
 
 func main() {
@@ -49,9 +50,14 @@ func doOvpnUp(fn string, user string, pass string, routes []string) {
 		return
 	}
 
+	cwd, err := os.Getwd()
+	if err != nil {
+		fmt.Println("获取当前目录失败", err)
+	}
+
 	command := []string{
 		"curl", "sf/ovpn/up",
-		"-d", fmt.Sprintf("config=\"$(pwd)/%s\"", fn),
+		"-d", fmt.Sprintf("config=%s", filepath.Join(cwd, fn)),
 	}
 
 	if user != "" && pass != "" {
