@@ -26,7 +26,7 @@ func doOvpnStatus() {
 }
 
 func doOvpnDown() {
-	runCmd([]string{"curl", "curl sf/ovpn/down"})
+	runCmd([]string{"curl", "sf/ovpn/down"})
 }
 
 func doView(fn string) {
